@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<!-- REST Controllers config -->
+	<context:component-scan base-package="com.nestor.angular.rest.controller" />
+	<mvc:annotation-driven />
+		
+	<!-- JSON config -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+					<property name="prefixJson" value="true" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Mock Services -->
+	<bean class="com.nestor.angular.service.impl.mock.MobileServiceMockImpl"></bean>
+	<bean class="com.nestor.angular.service.impl.mock.WeatherServiceMockImpl"></bean>
+</beans>
