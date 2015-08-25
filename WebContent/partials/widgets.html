@@ -18,22 +18,23 @@
 					<!-- data-widget-title will tell us the title of the widget -->
 					<!-- data-widget-pane will tell us the containing tab of the widget -->
 					<!-- data-widget-template will tell us if the widget content is based on a template -->
-					<!-- ngController is used for each widget because in that way each widget have its own $scope -->
 					<!-- The following will be a Line Chart Widget that will make a request to /weather/2012 and takes its HTML from the template widgetContent.html-->
-					<div data-ng-controller="WidgetController" 
-						data-widget='{"class":"chart", "type":"line", "config":"commonPlot"}'
-						data-widget-object='{"url":"weather", "param":"2012"}' 
+					<div data-widget='{"class":"chart", "type":"line", "config":"commonPlot"}'
+						data-widget-controller="ChartController"
+						data-widget-object='{"url":"weather", "param":"2012"}'
+						data-widget-lib='../lib/highcharts/js/highcharts'
 						data-widget-title="Weather Measure for year 2012 (Widget obtained by templating!)"
 						data-widget-template="widgetContent.html"
 						data-widget-name="lineChartExample" data-widget-pane="0">
 					</div>
-		
+					
 					<!-- This widget defines its own HTML -->
-					<div data-ng-controller="WidgetController" 
-						data-widget='{"class":"chart", "type":"area", "config":"commonPlot"}'
+					<div data-widget='{"class":"chart", "type":"area", "config":"commonPlot"}'
+						data-widget-controller="ChartController"
 						data-widget-object='{"url":"weather", "param":"2013/5"}' 
 						data-widget-title="Weather Measure for June 2013"
-						data-widget-name="areachartExample"  data-widget-pane="0">
+						data-widget-lib='../lib/highcharts/js/highcharts'
+						data-widget-name="areachartExample" data-widget-pane="0">
 						<div class="accordion">
 							<div class="accordion-group">
 								<div class="accordion-heading">
@@ -51,18 +52,19 @@
 			
 			<pane heading="Mobile Widgets">
 				<section id="mobileMeasures">
-					<div data-ng-controller="WidgetController" 
-						data-widget='{"class":"grid", "config":"mobileGrid"}'
+					<div data-widget='{"class":"grid", "config":"mobileGrid"}'
+						data-widget-controller="GridController"
 						data-widget-object='{"url":"mobile", "param":""}' 
 						data-widget-title="List of Mobile OS as Feb 2013"
 						data-widget-template="widgetContent.html"
+						data-widget-lib='http://trirand.com/blog/jqgrid/js/jquery.jqGrid.js'
 						data-widget-name="mobileGridExample"  data-widget-pane="1">
 					</div>
-					
-					<div data-ng-controller="WidgetController" 
-						data-widget='{"class":"chart", "type":"line", "config":"commonPlot"}'
+					<div data-widget='{"class":"chart", "type":"line", "config":"commonPlot"}'
+						data-widget-controller="ChartController"
 						data-widget-object='{"url":"mobile", "param":""}' 
 						data-widget-title="Mobile OS Market Share during 2013"
+						data-widget-lib='../lib/highcharts/js/highcharts'
 						data-widget-template="widgetContent.html"
 						data-widget-name="mobileChartExample"  data-widget-pane="1">
 					</div>
@@ -70,13 +72,14 @@
 			</pane>
 			
 			<pane heading="Other Widgets">
-					<div data-ng-controller="WidgetController"
-						data-widget-template="widgetContent.html" 
-						data-widget='{"class":"map", "type":"geolocation"}'
-						data-widget-object='{"url":"mobile", "param":""}' 
-						data-widget-title="Google Maps Example"
-						data-widget-name="mapsExample"  data-widget-pane="2">
-					</div>
+				<div data-widget-template="widgetContent.html" 
+					data-widget='{"class":"map", "type":"geolocation"}'
+					data-widget-controller="MapController"
+					data-widget-object='{"url":"mobile", "param":""}' 
+					data-widget-lib='lib/gmaps.js'
+					data-widget-title="Google Maps Example"
+					data-widget-name="mapsExample" data-widget-pane="2">
+				</div>
 			</pane>
 		</tabs>
 	</div>

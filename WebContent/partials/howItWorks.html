@@ -10,14 +10,15 @@
 <div class="row-fluid">
 	<div class="span3">
 		<h3>First, a <a href="http://docs.angularjs.org/guide/directive">directive</a></h3>
-		<small>The file directives.js defines a directive (<em>widgetDefinition</em>) placed in an attribute. That means that when the DOM compilation is happening, 
-			each HTML element that has that attribute will be processed as a widget.<br/> This process modifies the DOM to add a loading and error DIVs,
-			inits a commons variables for all the widgets and in case the widget needs it, it loads JavaScripts libraries.</small>
+		<small>The file WidgetDirective.js defines a directive (<em>widget</em>) to be used as an attribute. That means that when the DOM compilation is happening, 
+			each HTML element that has this attribute will be processed as a widget.<br/> This process modifies the DOM to add a loading and error DIVs,
+			initializes common variables for all the widgets, and in case the widget has specified it, it loads JavaScripts libraries.</small>
 	</div>
 	<div class="span3">
 		<h3>Then, the <a href="http://docs.angularjs.org/guide/dev_guide.mvc.understanding_controller">controller</a></h3>
-		<small>When the directive has finished, it made a call to the WidgetController. At this stage, the controller only evaluates the type of the widget and invokes the proper
-		logic for it. <br/></small>
+		<small>Once the directive has finished, it makes a call to WidgetController. At this stage, this controller only subscribes the $scope to a UI-tabs event. Each
+		type of widget must prototype-inherit from WidgetController and define a function called <em>processWidget</em>. This function is where the logic to
+		create the widget must be. <br/></small>
 	</div>
 	<div class="span3">
 		<h3>Yeah, the <a href="http://docs.angularjs.org/guide/dev_guide.services.understanding_services">service</a></h3>
@@ -27,7 +28,7 @@
 	<div class="span3">
 		<h3>The final step!</a></h3>
 		<small>The controller receives the promise object and defines the successCallback and errorCallback for it. If the request has been successful, the controller
-		will proceed to create the widget with the data obtained.<br/></small>
+		will proceed to render the widget with the data obtained.<br/></small>
 	</div>
 </div>
 </header>
