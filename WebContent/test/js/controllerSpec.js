@@ -19,16 +19,20 @@ describe("CONTROLLER TEST", function(){
 	          $scope: scope
 	        });
 	    }));
-	
-	    it('Must init flag variable of third party libraries', function(){
-
-	    	scope.initApp();
-	    	expect(rootScope.loadingChartJS).toBeFalsy();
-	    	expect(rootScope.loadedChartJS).toBeFalsy();
-	    	expect(rootScope.loadingGrid).toBeFalsy();
-	    	expect(rootScope.loadedGrid).toBeFalsy();
-	    	expect(rootScope.loadingMaps).toBeFalsy();
-	    	expect(rootScope.loadedMap).toBeFalsy();
+	    
+	    it('should subscribe to an event', function(done){
+	    	var ctx = {
+	    		widgetPane: 0,
+	    		type: {
+	    			type: "TEST"
+	    		},
+	    		processWidget: function(type, listener){
+	    			expect(type).toBe("TEST");
+	    		}
+	    	};
+	    	
+	    	WidgetController.loadWidget.apply(ctx, $scope);
+	    	$scope.$root.$broadcast("pane:0");
 	    });
 	});
 	
